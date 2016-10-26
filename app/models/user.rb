@@ -5,4 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :versions, foreign_key: :editor_id
+  has_many :articles, through: :versions
+  has_many :categories, through: :articles
 end
