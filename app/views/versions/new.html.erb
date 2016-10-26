@@ -1,0 +1,18 @@
+<h3>New Article</h3>
+	<%= form_for [@article, @article.versions.build] do |f| %>
+	  <div>
+	    <%= f.label :title %>
+	  </div>
+	  <div>
+	    <%= f.text_field :title %>
+	  </div>
+	  <div>
+	    <%= f.label :body %>
+	  </div>
+	  <div>
+	    <%= f.cktext_area :body, rows: 10 %>
+	  </div>
+	  <div>
+	    <%= f.submit 'Save Article' %>
+	  </div>
+<% end %>
