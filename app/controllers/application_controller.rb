@@ -1,8 +1,9 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  ### user before filters on in your methods to call to make sure a user is logged in.
+  ### user before filters on in your methods to call to make sure a user is logged in.  Two examples below
   # before_filter :authenticate_user!, except: [:index]
+  # before_filter :user_signed_in?
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
