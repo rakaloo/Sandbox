@@ -59,10 +59,11 @@ ActiveRecord::Schema.define(version: 20161026200641) do
     t.string   "title"
     t.string   "body"
     t.integer  "article_id"
-    t.integer  "editor"
+    t.integer  "editor_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["article_id"], name: "index_versions_on_article_id", using: :btree
+    t.index ["editor_id"], name: "index_versions_on_editor_id", using: :btree
   end
 
   add_foreign_key "categorizations", "articles"
