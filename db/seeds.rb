@@ -11,5 +11,5 @@ user_seeds.each { |user| User.create(user) }
 10.times { Article.create }
 
 version_seeds = [
-
+  { title: "Turtles", body: "Turtles are great!", article_id: , editor_id:  },
 ]
