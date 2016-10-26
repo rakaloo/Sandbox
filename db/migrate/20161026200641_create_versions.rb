@@ -4,7 +4,7 @@ class CreateVersions < ActiveRecord::Migration[5.0]
       t.string :title
       t.string :body
       t.belongs_to :article, foreign_key: true
-      t.belongs_to :editor, class_name: "User", foreign_key: true
+      t.belongs_to :editor
 
       t.timestamps
     end
