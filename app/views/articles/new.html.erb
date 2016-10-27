@@ -13,11 +13,19 @@
 		  <%= versions_form.cktext_area :body, rows: 10 %>
 		</div>
 	<% end %>
+  <div>
+    <%= f.fields_for :categorizations do |categorizations_form| %>
+    <div>
+      <%= label_tag "Select all categories that apply:" %><br>
+      <%= select_tag :category, options_from_collection_for_select(Category.all, :id, :name), multiple: true %>
+    </div>
+    <% end %>
+  </div>
 	<div>
 	  <%= f.submit 'Save Article' %>
 	</div>
 <% end %>
 
-<%= render 'categorizations/form' %>
+
 
 <%= render 'categories/form' %>

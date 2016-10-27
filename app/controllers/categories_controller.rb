@@ -1,20 +1,23 @@
 class CategoriesController < ApplicationController
-  def index
-    @categories = Category.all
-  end
+  before_action :authenticate_user!, except: [:index, :show]
 
   def create
     @category = Category.new(category_params)
     @category.save
+    redirect_to @category
   end
 
   def update
   end
 
   def destroy
-    category = Category.find(params[:id])
-    category.destroy
-    redirect_to catergories_path
+    if current_user && current_user.role == "Admin"
+      category = Category.find(params[:id])
+      category.destroy
+      redirect_to categories_path
+    else
+      render file: "/public/422.html"
+    end
   end
 
   def show

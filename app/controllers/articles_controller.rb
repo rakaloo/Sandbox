@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-	before_action :authenticate_user!, except: [:index, :show]
+	before_action :authenticate_user!, except: [:index, :show, :search]
 
 	def index
 		@articles = Article.all
@@ -9,12 +9,18 @@ class ArticlesController < ApplicationController
 		@article = Article.new(article_params)
 		@article.versions[0].editor = current_user
 		@article.save
+		if params[:category]
+			params[:category].each do |category_id|
+				Categorization.create(article: @article, category_id: category_id)
+			end
+		end
 		redirect_to @article
 	end
 
 	def new
 		@article = Article.new
 		@article.versions.build
+		@article.categorizations.build
 	end
 
 	def show
@@ -34,9 +40,8 @@ class ArticlesController < ApplicationController
 		@potential_matches = Article.all.map do |article|
 			article.versions.last
 		end
-
 		@potential_matches.keep_if do | version |
-			version.title.include? params[:search]
+			version.title.downcase.include? params[:search].downcase
 		end
 	end
 

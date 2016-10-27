@@ -85,6 +85,7 @@ RSpec.describe ArticlesController, type: :controller do
 	        expect(response).to redirect_to article_path(Article.last)
 	      end
 	    end
+  end
 
   describe "POST #destroy" do
     let!(:user) { User.create(username: "duke", email:"duke@duke.com", password: "password") }
@@ -114,6 +115,5 @@ RSpec.describe ArticlesController, type: :controller do
         expect(response).to render_template(:file => "#{Rails.root}/public/422.html")
         end
       end
-    end
 	end
 end
