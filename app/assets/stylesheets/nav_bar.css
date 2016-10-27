@@ -1,8 +1,51 @@
-#site-header {
+nav ul {
+    list-style-type: none;
+    margin: 3px 0px;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid gray;
+    border-radius: 2px;
+    background-color: white;
+}
+
+nav li {
+    float: right;
+}
+
+nav li a {
+    display: block;
+    color: black;
+    text-align: center;
+    margin: 0px;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+nav li a:hover {
+    background-color: #ff91c0;
+}
+
+button {
+    background-color: transparent;
+    border: 0;
+    padding: 14px 16px;
+    color: white;
+}
+
+button:hover {
+    background-color: #d9d9d9;
+}
+
+.search-bar {
+  margin-top: 10px;
+  margin-right: 5px;
+}
+
+#header {
+    float: left;
     text-align: center;
     padding: 6px 6px;
     text-decoration: none;
-    font-size: 2em;
-    color: red;
+    font-size: 1.8em;
+    color: #ba1faa;
 }
-
