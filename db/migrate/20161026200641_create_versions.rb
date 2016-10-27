@@ -8,5 +8,6 @@ class CreateVersions < ActiveRecord::Migration[5.0]
 
       t.timestamps
     end
+    add_foreign_key :versions, :users, column: :editor_id
   end
 end
