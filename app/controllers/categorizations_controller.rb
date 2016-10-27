@@ -6,6 +6,6 @@ class CategorizationsController < ApplicationController
 
 private
   def categorization_params
-    params.require(:categorization).permit(:article, :category)
+    params.require(:categorization).permit(:article_id, :category_id, :article, :category)
   end
 end
