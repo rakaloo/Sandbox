@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount Ckeditor::Engine => '/ckeditor'
   devise_for :users
 
   resources :users_admin, :controller => 'users', only: [:index, :edit, :update, :destroy]
