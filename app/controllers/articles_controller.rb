@@ -26,4 +26,9 @@ class ArticlesController < ApplicationController
 			render file: "/public/422.html"
 		end
 	end
+
+	def search
+		p params[:search]
+		p "got to search"
+	end
 end
