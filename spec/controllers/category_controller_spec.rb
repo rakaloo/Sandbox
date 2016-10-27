@@ -2,11 +2,29 @@ require 'rails_helper'
 
 RSpec.describe CategoriesController, type: :controller do
 
-  describe "GET #create" do
-    it "returns http success" do
-      get :create
-      expect(response).to have_http_status(:success)
-    end
+  describe "POST #create" do
+    let!(:user) { User.create(username: "duke", email:"duke@duke.com", password: "password") }
+
+      context "when valid params are passed, the category is created" do
+        it "responds with status code 302" do
+          post :create, { params: { category: { name: "dogs" } } }, sign_in(user)
+          expect(response).to have_http_status 302
+        end
+
+        it "creates a new category in the database" do
+          expect{ post :create, { :params => { category: { name: "dogs" } } }, sign_in(user) }.to change{Category.all.count}.by 1
+        end
+
+        it "assigns the newly created category as @category" do
+          post :create, { :params => { category: { name: "dogs" } } }, sign_in(user)
+          expect(assigns(:category)).to eq Category.last
+        end
+
+        it "redirects to the created category" do
+          post :create, { :params => { category: { name: "dogs" } } } , sign_in(user)
+          expect(response).to redirect_to category_path(Category.last)
+        end
+      end
   end
 
   describe "DELETE #destroy" do
@@ -40,11 +58,11 @@ RSpec.describe CategoriesController, type: :controller do
       end
   end
 
-  describe "GET #show" do
-    it "returns http success" do
-      get :show
-      expect(response).to have_http_status(:success)
-    end
-  end
+  # describe "GET #show" do
+  #   it "returns http success" do
+  #     get :show
+  #     expect(response).to have_http_status(:success)
+  #   end
+  # end
 
 end

@@ -1,7 +1,10 @@
 class CategoriesController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
+
   def create
     @category = Category.new(category_params)
     @category.save
+    redirect_to @category
   end
 
   def update
