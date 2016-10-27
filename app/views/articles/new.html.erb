@@ -1,1 +1,19 @@
-new.html.erb
+<%= form_for @article do |f| %>
+	<%= f.fields_for :versions do |versions_form| %>
+		<div>
+		  <%= versions_form.label :title %>
+		</div>
+		<div>
+		  <%= versions_form.text_field :title %>
+		</div>
+		<div>
+		  <%= versions_form.label :body %>
+		</div>
+		<div>
+		  <%= versions_form.cktext_area :body, rows: 10 %>
+		</div>
+	<% end %>
+	<div>
+	  <%= f.submit 'Save Article' %>
+	</div>
+<% end %>
