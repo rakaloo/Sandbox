@@ -1,0 +1,7 @@
+<% form_for :categorizations do |f| %>
+  <% Category.all.each do |category| %>
+    <%= f.check_box(category) %>
+  <% end %>
+<% end %>
+
+
