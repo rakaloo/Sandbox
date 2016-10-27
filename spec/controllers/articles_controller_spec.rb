@@ -51,38 +51,39 @@ RSpec.describe ArticlesController, type: :controller do
     end
 
     it "assigns a new article to @article" do
-      get :new
+      get :new, {}, sign_in(user)
       expect(assigns(:article)).to be_a_new Article
     end
 
     it "renders the :new template" do
-      get :new
+      get :new, {}, sign_in(user)
       expect(response).to render_template(:new)
     end
   end
 
-	# describe "POST #create" do
-	# 	include Devise::TestHelpers
+	describe "POST #create" do
+    let!(:user) { User.create(username: "duke", email:"duke@duke.com", password: "password") }
 
-	#     context "when valid params are passed, which is impossible to do right now for article" do
-	#       it "responds with status code 302" do
-	#         post :create
-	#         expect(response).to have_http_status 302
-	#       end
+	    context "when valid params are passed, which is impossible to not do right now for article" do
+	      it "responds with status code 302" do
+	        post :create, {}, sign_in(user)
+	        expect(response).to have_http_status 302
+	      end
 
-	#       it "creates a new article in the database" do
-	#         expect{ post :create } .to change{Article.all.count}.by 1
-	#       end
+	      it "creates a new article in the database" do
+          post :create, {}, sign_in(user)
+	        expect{ post :create } .to change{Article.all.count}.by 1
+	      end
 
-	#       it "assigns the newly created article as @article" do
-	#         post :create
-	#         expect(assigns(:article)).to eq Article.last
-	#       end
+	      it "assigns the newly created article as @article" do
+	        post :create, {}, sign_in(user)
+	        expect(assigns(:article)).to eq Article.last
+	      end
 
-	#       it "redirects to the created article" do
-	#         post :create
-	#         expect(response).to redirect_to article_path(Article.last)
-	#       end
-	#     end
-	# end
+	      it "redirects to the created article" do
+	        post :create, {}, sign_in(user)
+	        expect(response).to redirect_to article_path(Article.last)
+	      end
+	    end
+	end
 end
