@@ -4,20 +4,19 @@
   <tr>
     <th>Username </th>
     <th>Email Address </th>
-    <th>Current Admin/User Status</th>
+    <th>Current Status</th>
+    <th>Update</th>
   </tr>
 
   <% @users.each do |user| %>
     <tr>
       <td><%= user.username %></td>
       <td><%= user.email %></td>
-      <td><%= form_for (users_admin_path(user)) do |f|  %>
+      <td><%= form_for user, url: "/users_admin/#{user.id}", method: :patch do |f|  %>
           <span>
-            <%= f.select :role, options_for_select(["Banned", "User","Admin" ])%>
-          </span>
-            <%= f.submit "Update User Status" %>
-          </span>
-        <% end %></td>
+            <%= f.select :role, options_for_select(["Banned", "User","Admin"], value="#{user.role}") %>
+          </span><span><%= f.submit "Update User Status" %>
+          </span><% end %></td>
     </tr>
   <% end %>
 </table>
