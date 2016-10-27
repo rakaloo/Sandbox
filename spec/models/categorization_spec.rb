@@ -4,8 +4,6 @@ RSpec.describe Categorization, type: :model do
   describe "validations" do
     let (:article) { Article.create}
     let (:category) { Category.create(name: "Clouds") }
-    # let (:categorization_1) { Categorization.create(article)}
-    # let (:categorization_2) { Categorization.create(article: article, category: category) }
 
     it "is not valid without an article" do
       categorization = Categorization.new(category: category)
@@ -23,21 +21,18 @@ RSpec.describe Categorization, type: :model do
     end
   end
 
-  # describe "associations" do
-  #   let!(:category) { Category.create(name: "potato") }
-  #   let!(:another_category) { Category.create(name: "onion") }
+  describe "associations" do
+    let (:article) { Article.create}
+    let (:category) { Category.create(name: "Clouds") }
+    let (:categorization) { Categorization.create(article: article, category: category) }
 
-  #   let (:articles) { [Article.create(), Article.create()] }
+    it "belongs to an article" do
+      expect(categorization.article).to be_a Article
+    end
 
-  #   let (:categorizations) { [Categorization.create(article: articles[0], category: category), Categorization.create(article: articles[1], category: category), Categorization.create(article: articles[1], category: another_category), Categorization.create(article: articles[0], category: another_category)] }
+    it "belongs to a category" do
+      expect(categorization.category).to be_a Category
+    end
 
-  #   it "has many articles" do
-  #     expect(category.articles).to all be_a Article
-  #   end
-
-  #   it "has many categorizations" do
-  #     expect(category.categorizations).to all be_a Categorization
-  #   end
-
-  # end
+  end
 end
