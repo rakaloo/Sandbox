@@ -58,11 +58,23 @@ RSpec.describe CategoriesController, type: :controller do
       end
   end
 
-  # describe "GET #show" do
-  #   it "returns http success" do
-  #     get :show
-  #     expect(response).to have_http_status(:success)
-  #   end
-  # end
+  describe "GET #show" do
+    let!(:category) { Category.create(name: "Clouds") }
+
+    it "responds with status code 200" do
+      get :show, { id: category.id }
+      expect(response).to have_http_status 200
+    end
+
+    it "finds the article based off the id param" do
+      get :show, { id: category.id }
+      expect((assigns(:category)).id).to eq category.id
+    end
+
+    it "renders the :new template" do
+      get :show, { id: category.id }
+      expect(response).to render_template(:show)
+    end
+  end
 
 end
