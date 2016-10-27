@@ -40,6 +40,13 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'rspec-rails'
   gem 'capybara'
+  gem 'factory_girl_rails'
+  gem 'vcr'
+  gem 'shoulda-matchers', '~> 3.1'
+end
+
+group :test do 
+  gem 'webmock'
 end
 
 group :development do
