@@ -10,4 +10,16 @@ class Article < ApplicationRecord
 	def current_version
 		versions.last
 	end
+
+  def cached_body
+    versions[-2].body
+  end
+
+  def cached_title
+    versions[-2].title
+  end
+
+  def editor
+    current_version.editor
+  end
 end
