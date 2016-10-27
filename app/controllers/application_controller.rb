@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   # before_filter :authenticate_user!, except: [:index]
   # before_filter :user_signed_in?
 
-  before_filter :configure_permitted_parameters, if: :devise_controller?
+  before_action :configure_permitted_parameters, if: :devise_controller?
 
   def admin_user?
     current_user.role == "Admin"
