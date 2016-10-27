@@ -25,6 +25,14 @@ RSpec.describe CategoriesController, type: :controller do
           expect(response).to redirect_to category_path(Category.last)
         end
       end
+
+      context "Can't create when no user logs in" do
+        it "redirects to the created category" do
+          post :create, { :params => { category: { name: "dogs" } } }
+          expect(response).to redirect_to new_user_session_path
+        end
+
+      end
   end
 
   describe "DELETE #destroy" do
