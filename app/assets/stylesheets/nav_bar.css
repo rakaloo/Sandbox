@@ -3,9 +3,8 @@ nav ul {
     margin: 3px 0px;
     padding: 0;
     overflow: hidden;
-    border: 1px solid gray;
     border-radius: 2px;
-    background-color: white;
+    background-color: #ef5890;
 }
 
 nav li {
@@ -14,7 +13,7 @@ nav li {
 
 nav li a {
     display: block;
-    color: black;
+    color: white;
     text-align: center;
     margin: 0px;
     padding: 14px 16px;
@@ -47,5 +46,5 @@ button:hover {
     padding: 6px 6px;
     text-decoration: none;
     font-size: 1.8em;
-    color: #ba1faa;
+    color: white;
 }
