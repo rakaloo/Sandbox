@@ -1,0 +1,3 @@
+<h2><%= @article.current_version.title %></h2>
+<%= @article.current_version.body.html_safe %>
+<p>Last edited by: <%= @article.current_version.editor.username %></p>
