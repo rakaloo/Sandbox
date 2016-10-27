@@ -1,0 +1,4 @@
+<h3>Results of your search:</h3>
+<% @potential_matches.each do |match| %>
+  <%= render match.article %>
+  <% end %>

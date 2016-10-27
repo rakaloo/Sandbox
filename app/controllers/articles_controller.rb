@@ -26,4 +26,14 @@ class ArticlesController < ApplicationController
 			render file: "/public/422.html"
 		end
 	end
+
+	def search
+		@potential_matches = Article.all.map do |article|
+			article.versions.last
+		end
+
+		@potential_matches.keep_if do | version |
+			version.title.include? params[:search]
+		end
+	end
 end
