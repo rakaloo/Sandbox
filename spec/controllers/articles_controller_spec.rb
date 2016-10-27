@@ -85,5 +85,29 @@ RSpec.describe ArticlesController, type: :controller do
 	        expect(response).to redirect_to article_path(Article.last)
 	      end
 	    end
+
+  describe "POST #destroy" do
+    let!(:user) { User.create(username: "duke", email:"duke@duke.com", password: "password") }
+    let!(:admin) { User.create(username: "Ellie", email:"ellie@ellie.com", password: "password", role: "Admin") }
+    let!(:article) { Article.create! }
+
+      context "when admin is the user trying to destroy a post" do
+        it "responds with status code 302" do
+          delete :destroy, { id: article.id }, sign_in(admin)
+          expect(response).to have_http_status 302
+        end
+
+        it "destroys the article" do
+          expect{ delete :destroy, { id: article.id }, sign_in(admin) } .to change{Article.all.count}.by -1
+        end
+      end
+
+      context "when user is trying to destroy a post" do#
+       it "responds with 422 public rejection file" do
+        delete :destroy, { id: article.id }, sign_in(user)
+        expect(response).to render_template(:file => "#{Rails.root}/public/422.html")
+        end
+      end
+    end
 	end
 end
