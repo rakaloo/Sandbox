@@ -49,5 +49,23 @@ RSpec.describe VersionsController, type: :controller do
     end
   end
 
+  describe "GET #new" do
+    let!(:user) { User.create(username: "duke", email:"duke@duke.com", password: "password") }
+    let!(:article) { Article.create! }
 
+    it "responds with status code 200" do
+      get :new, { params: { article_id: article.id } }, sign_in(user)
+      expect(response).to have_http_status 200
+    end
+
+    it "passes through the article found to be shown as @article" do
+      get :new, { params: { article_id: article.id } }, sign_in(user)
+      expect(assigns(:article)).to be_a Article
+    end
+
+    it "renders the :new template" do
+      get :new, { params: { article_id: article.id } }, sign_in(user)
+      expect(response).to render_template(:new)
+    end
+  end
 end
