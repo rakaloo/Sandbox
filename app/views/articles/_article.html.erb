@@ -1,2 +1,2 @@
-<h3><%= article.versions.last.title %></h3>
-<%= article.current_version.body.html_safe %>
+<h3><%= link_to article.current_version.title, article_path(article) %></h3>
+<%= article.current_version.body[0..100].html_safe %>
