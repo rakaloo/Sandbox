@@ -1,14 +1,17 @@
 class ArticlesController < ApplicationController
+	before_action :authenticate_user!, except: [:index, :show]
+
 	def index
 		@articles = Article.all
 	end
 
 	def create
-		@article = Article.new
-		redirect_to articles_path
+		@article = Article.create
+		redirect_to @article
 	end
 
 	def new
+		p current_user
 		@article = Article.new
 	end
 
@@ -17,7 +20,11 @@ class ArticlesController < ApplicationController
 	end
 
 	def destroy
-		Article.find_by(id: params[:id]).destroy
-		redirect_to articles_path
+		if current_user && current_user.role == "Admin"
+			Article.find_by(id: params[:id]).destroy
+			redirect_to articles_path
+		else
+			render file: "/public/422.html"
+		end
 	end
 end

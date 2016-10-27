@@ -27,7 +27,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
-
+gem 'rails-controller-testing'
 gem 'devise'
 gem 'ckeditor'
 gem 'slim'
@@ -40,6 +40,13 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'rspec-rails'
   gem 'capybara'
+  gem 'factory_girl_rails'
+  gem 'vcr'
+  # gem 'shoulda-matchers', '~> 3.1'
+end
+
+group :test do 
+  gem 'webmock'
 end
 
 group :development do
