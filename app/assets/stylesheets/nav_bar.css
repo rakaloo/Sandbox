@@ -1,9 +1,8 @@
-/*.nav_ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    width: 200px;
-    background-color: #f1f1f1;
-    border: 1px solid #555;
+#site-header {
+    text-align: center;
+    padding: 6px 6px;
+    text-decoration: none;
+    font-size: 2em;
+    color: red;
 }
-*/
+
