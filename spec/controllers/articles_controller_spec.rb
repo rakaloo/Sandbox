@@ -89,6 +89,7 @@ RSpec.describe ArticlesController, type: :controller do
   describe "POST #destroy" do
     let!(:user) { User.create(username: "duke", email:"duke@duke.com", password: "password") }
     let!(:admin) { User.create(username: "Ellie", email:"ellie@ellie.com", password: "password", role: "Admin") }
+    let!(:space_article) { Article.create! }
     let!(:article) { Article.create! }
 
       context "when admin is the user trying to destroy a post" do
@@ -97,8 +98,13 @@ RSpec.describe ArticlesController, type: :controller do
           expect(response).to have_http_status 302
         end
 
-        it "destroys the article" do
+        it "destroys an article" do
           expect{ delete :destroy, { id: article.id }, sign_in(admin) } .to change{Article.all.count}.by -1
+        end
+
+        it "destroys the specificarticle" do
+          delete :destroy, { id: article.id }, sign_in(admin)
+          expect(Article.pluck(:id)).not_to include(article.id)
         end
       end
 
