@@ -6,6 +6,7 @@
     <th>Email Address </th>
     <th>Current Status</th>
     <th>Update</th>
+    <th>Delete</th>
   </tr>
 
   <% @users.each do |user| %>
@@ -15,8 +16,10 @@
       <td><%= form_for user, url: "/users_admin/#{user.id}", method: :patch do |f|  %>
           <span>
             <%= f.select :role, options_for_select(["Banned", "User","Admin"], value="#{user.role}") %>
-          </span><span><%= f.submit "Update User Status" %>
+          </span></td><td><span><%= f.submit "Update User Status" %>
           </span><% end %></td>
+      <td> <%= form_for user, url: "/users_admin/#{user.id}",  method: :delete, data: { confirm: "Are you sure?" }  do |f| %>
+        <%= f.submit "Delete User" %> <% end %></td>
     </tr>
   <% end %>
 </table>

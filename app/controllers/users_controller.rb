@@ -18,6 +18,12 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    if current_user && current_user.role == "Admin"
+      User.find_by(id: params[:id]).destroy
+      redirect_to users_admin_index_path
+    else
+      render file: "/public/422.html"
+    end
   end
 
   private
