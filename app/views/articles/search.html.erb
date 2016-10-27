@@ -1,0 +1,7 @@
+<h3>Results of your search:</h3>
+<%= @potential_matches.each do |match| %>
+  <%= render match.article %>
+  <p>It's above or below the end of this!</p>
+  <% end %>
+
+<h3>It's below or above this line!</h3>

@@ -28,7 +28,12 @@ class ArticlesController < ApplicationController
 	end
 
 	def search
-		p params[:search]
-		p "got to search"
+		@potential_matches = Article.all.map do |article|
+			article.versions.last
+		end
+
+		@potential_matches.keep_if do | version |
+			version.title.include? params[:search]
+		end
 	end
 end
