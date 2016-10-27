@@ -9,13 +9,13 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user.find_by(id: params[:id])
+    @user = User.find_by(id: params[:id])
     p "Got through here!"
     p params
   end
 
   def update
-    p "Got through here!"
+    p "Got through the update path!"
     p params
 
   end

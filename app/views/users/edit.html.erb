@@ -1,9 +1,0 @@
-<%= form_for (@user || commentable.comments.build]) do |f|  %>
-  <div>
-    <%= f.label :body %>
-    <%= f.text_field :body %>
-  </div>
-  <div>
-    <%= f.submit %>
-  </div>
-<% end %>
