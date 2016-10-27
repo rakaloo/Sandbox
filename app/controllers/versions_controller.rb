@@ -17,6 +17,7 @@ class VersionsController < ApplicationController
 		@version = Version.new(version_params)
 		@version.article = @article
 		@version.editor = current_user
+		redirect_to article_path(@article)
 	end
 
 	def destroy

@@ -1,14 +1,15 @@
-<div>
-  <% if user_signed_in? %>
-    <ul class="nav_ul">
-      <li> <%= link_to "Homepage", root_path %> </li>|
+<nav>
+  <ul class="nav_ul">
+      <li id="header">Sandbox</li>
+      <li class="search-bar"><%= render '/shared/search_bar' %></li>
+    <% if user_signed_in? %>
+      <li> <%= link_to "Homepage", root_path %> </li>
       <li> <%= link_to "Logout", destroy_user_session_path, method: :delete %> </li>
-    </ul>
-  <% else %>
-    <ul class="nav_ul">
+    <% else %>
       <li> <%= link_to "Homepage", root_path %> </li>
       <li> <%= link_to "Login", new_user_session_path  %> </li>
       <li> <%= link_to "Register", new_user_registration_path %> </li>
-    </ul>
-  <% end %>
-</div>
+    <% end %>
+  </ul>
+</nav>
+

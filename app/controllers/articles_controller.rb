@@ -6,12 +6,15 @@ class ArticlesController < ApplicationController
 	end
 
 	def create
-		@article = Article.create
+		@article = Article.new(article_params)
+		@article.versions[0].editor = current_user
+		@article.save
 		redirect_to @article
 	end
 
 	def new
 		@article = Article.new
+		@article.versions.build
 	end
 
 	def show
@@ -36,4 +39,9 @@ class ArticlesController < ApplicationController
 			version.title.include? params[:search]
 		end
 	end
+
+	private
+		def article_params
+			params.require(:article).permit(versions_attributes: [:title, :body])
+		end
 end
