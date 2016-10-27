@@ -1,7 +1,6 @@
-<% form_for :categorizations do |f| %>
-  <% Category.all.each do |category| %>
-    <%= f.check_box(category) %>
-  <% end %>
+<%= form_for :categorizations do |f| %>
+  <%= select_tag :category, options_from_collection_for_select(Category.all, :id, :name), multiple: true %>
+  <%= f.submit "Submit" %>
 <% end %>
 
 
