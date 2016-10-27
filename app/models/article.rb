@@ -5,6 +5,6 @@ class Article < ApplicationRecord
 	has_many :editors, through: :versions, source: :editor
 
 	def current_version
-		self.versions.last
+		versions.last
 	end
 end

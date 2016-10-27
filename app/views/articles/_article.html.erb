@@ -1,2 +1,2 @@
-<h3><%= article.current_version.title %></h3>
-<%= article.current_version.body %>
+<h3><%= article.versions.last.title %></h3>
+<%= article.current_version.body.html_safe %>
