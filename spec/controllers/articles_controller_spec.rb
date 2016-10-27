@@ -42,4 +42,21 @@ RSpec.describe ArticlesController, type: :controller do
       expect(response).to render_template(:show)
     end
   end
+
+  describe "GET #new" do
+    it "responds with status code 200" do
+      get :new
+      expect(response).to have_http_status 200
+    end
+
+    it "assigns a new article to @article" do
+      get :new
+      expect(assigns(:article)).to be_a_new Article
+    end
+
+    it "renders the :new template" do
+      get :new
+      expect(response).to render_template(:new)
+    end
+  end
 end
