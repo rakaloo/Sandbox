@@ -8,9 +8,13 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    category = Category.find(params[:id])
-    category.destroy
-    redirect_to catergories_path
+    if current_user && current_user.role == "Admin"
+      category = Category.find(params[:id])
+      category.destroy
+      redirect_to categories_path
+    else
+      render file: "/public/422.html"
+    end
   end
 
   def show
