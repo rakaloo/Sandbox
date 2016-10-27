@@ -18,4 +18,28 @@ RSpec.describe ArticlesController, type: :controller do
       expect(response).to render_template(:index)
     end
   end
+
+  describe "GET #show" do
+  	let!(:article) { Article.create! }
+
+    it "responds with status code 200" do
+      get :show, { id: article.id }
+      expect(response).to have_http_status 200
+    end
+
+    it "findsthrough all the articles as @articles" do
+      get :show, { id: article.id }
+      expect(assigns(:article)).to be_a Article
+    end
+
+    it "finds the article based off the id param" do
+      get :show, { id: article.id }
+      expect((assigns(:article)).id).to eq article.id
+    end
+
+    it "renders the :new template" do
+      get :show, { id: article.id }
+      expect(response).to render_template(:show)
+    end
+  end
 end
