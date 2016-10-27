@@ -9,11 +9,12 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = User.find_by(id: params[:id])
-    if @user.update_attributes(update_user_role_params)
+    if current_user && current_user.role == "Admin"
+      @user = User.find_by(id: params[:id])
+      @user.update_attributes(update_user_role_params)
       redirect_to users_admin_index_path
     else
-      redirect_to users_admin_index_path
+      render file: "/public/422.html"
     end
   end
 
