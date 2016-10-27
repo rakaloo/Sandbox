@@ -69,4 +69,5 @@ ActiveRecord::Schema.define(version: 20161026200641) do
   add_foreign_key "categorizations", "articles"
   add_foreign_key "categorizations", "categories"
   add_foreign_key "versions", "articles"
+  add_foreign_key "versions", "users", column: "editor_id"
 end
