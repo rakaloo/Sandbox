@@ -1,0 +1,6 @@
+<%= form_for :categorizations do |f| %>
+  <%= label_tag "Select all categories that apply:" %><br>
+  <%= select_tag :category, options_from_collection_for_select(Category.all, :id, :name), multiple: true %>
+<% end %>
+
+

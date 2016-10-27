@@ -1,3 +1,10 @@
 <h2><%= @article.current_version.title %></h2>
 <%= @article.current_version.body.html_safe %>
 <p>Last edited by: <%= @article.current_version.editor.username %></p>
+
+<h3>Categories</h3>
+<ul>
+  <% @article.categories.each do |category| %>
+    <li><%= link_to category.name, category %></li>
+  <% end %>
+</ul>
