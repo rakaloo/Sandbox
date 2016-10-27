@@ -10,7 +10,7 @@ RSpec.describe Categorization, type: :model do
       expect(categorization.valid?).to eq false
     end
 
-    it "is not valid without an article" do
+    it "is not valid without a category" do
       categorization = Categorization.new(article: article)
       expect(categorization.valid?).to eq false
     end
