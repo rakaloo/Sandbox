@@ -30,6 +30,16 @@ class ArticlesController < ApplicationController
 		end
 	end
 
+	def search
+		@potential_matches = Article.all.map do |article|
+			article.versions.last
+		end
+
+		@potential_matches.keep_if do | version |
+			version.title.include? params[:search]
+		end
+	end
+
 	private
 		def article_params
 			params.require(:article).permit(versions_attributes: [:title, :body])
