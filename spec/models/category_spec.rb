@@ -35,23 +35,22 @@ RSpec.describe Category, type: :model do
     end
   end
 
-  # describe "associations" do
-  #   let (:user) { User.create(username: "pentella", email: "npentella@gmail.com", password: "password") }
+  describe "associations" do
+    let!(:category) { Category.create(name: "potato") }
+    let!(:another_category) { Category.create(name: "onion") }
 
-  #   let (:articles) { [Article.create(), Article.create()] }
+    let (:articles) { [Article.create(), Article.create()] }
 
-  #   let (:versions) { [Version.create(title: "it's a test title", body: "it's a test body", article: articles[0], editor: user ), Version.create(title: "it's second test title", body: "it's  second test body", article: articles[1], editor: user)] }
+    let (:categorizations) { [Categorization.create(article: articles[0], category: category), Categorization.create(article: articles[1], category: category), Categorization.create(article: articles[1], category: another_category), Categorization.create(article: articles[0], category: another_category)] }
 
-  #   it "has many versions" do
-  #     user.versions = versions
-  #     expect(user.versions[0]).to be_a Version
-  #   end
+    it "has many articles" do
+      expect(category.articles).to all be_a Article
+    end
 
-  #   it "has many articles" do
-  #     user.articles = articles
-  #     expect(user.articles[0]).to be_a Article
-  #   end
+    it "has many categorizations" do
+      expect(category.categorizations).to all be_a Categorization
+    end
 
   end
-  pending "add some examples to (or delete) #{__FILE__}"
+  # pending "add some examples to (or delete) #{__FILE__}"
 end
