@@ -1,5 +1,9 @@
-<h2>Articles</h2>
+<div class="col-sm-2" id="sidebar">
+  <%= render "categories/index" %>
+</div>
+<div class="col-sm-10" >
+  <h2>Articles</h2>
+  <%= render @articles %>
+  <h3><%= link_to "New Article", new_article_path %></h3>
+</div>
 
-<%= render @articles %>
-
-<h3><%= link_to "New Article", new_article_path %></h3>

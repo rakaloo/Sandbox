@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-	before_action :authenticate_user!, except: [:index, :show]
+	before_action :authenticate_user!, except: [:index, :show, :search]
 
 	def index
 		@articles = Article.all
@@ -40,9 +40,8 @@ class ArticlesController < ApplicationController
 		@potential_matches = Article.all.map do |article|
 			article.versions.last
 		end
-
 		@potential_matches.keep_if do | version |
-			version.title.include? params[:search]
+			version.title.downcase.include? params[:search].downcase
 		end
 	end
 
