@@ -16,9 +16,8 @@ class VersionsController < ApplicationController
 
 	def create
 		@article = Article.find_by(id: params[:article_id])
-		@version = Version.create(version_params.merge(editor: current_user))
+		@version = Version.create(version_params.merge(editor: current_user, article: @article))
 		p @version.errors.full_messages
-		@version.article = @article
 		redirect_to article_path(@article)
 	end
 
