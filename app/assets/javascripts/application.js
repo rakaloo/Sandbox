@@ -14,3 +14,10 @@
 //= require jquery_ujs
 //= require ckeditor/init
 //= require_tree .
+
+$(document).ready(function(){
+
+  setTimeout(function F() {
+    $('div').append("<img scr='https://media.giphy.com/media/Ijoii9lApgGoU/giphy.gif'>")
+  },5000)
+})
