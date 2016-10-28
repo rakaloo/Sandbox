@@ -1,18 +1,28 @@
-<h3>New Article</h3>
-	<%= form_for [@article, @article.versions.build] do |f| %>
-	  <div>
-	    <%= f.label :title %>
-	  </div>
-	  <div>
-	    <%= f.text_field :title %>
-	  </div>
-	  <div>
-	    <%= f.label :body %>
-	  </div>
-	  <div>
-	    <%= f.cktext_area :body, rows: 10 %>
-	  </div>
-	  <div>
-	    <%= f.submit 'Save Article' %>
-	  </div>
+<h2>Edit An Article</h2>
+<%= form_for [@article, @article.versions.build] do |f| %>
+
+    <div>
+      <%= f.label :title %>
+    </div>
+    <div>
+      <%= f.text_field :title, value: @article.cached_title %>
+    </div>
+    <div>
+      <%= f.label :body %>
+    </div>
+    <div>
+      <%= f.cktext_area :body, rows: 10, value: @article.cached_body %>
+    </div>
+
+  <div>
+    <%= f.fields_for :categorizations do |categorizations_form| %>
+    <div>
+      <%= label_tag "Select all categories that apply:" %><br>
+      <%= select_tag :category, options_from_collection_for_select(Category.all, :id, :name), multiple: true %>
+    </div>
+    <% end %>
+  </div>
+  <div>
+    <%= f.submit 'Save Article' %>
+  </div>
 <% end %>
