@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   get '/articles/search', to: 'articles#search', as: :articles_search
 
+  get '/unauthorized', to: 'application#unauthorized', as: :unauthorized
+
   root to: "articles#index"
 
   resources :articles, except: [:edit, :update] do
