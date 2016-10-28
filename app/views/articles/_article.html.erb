@@ -1,3 +1,5 @@
-<h3><%= link_to article.current_version.title, article_path(article) %></h3>
-<p><%= article.current_version.body[0..200].html_safe %>...</p>
-<i>last updated by <%= article.last_updated_by %> on <%= article.last_updated_at %>. <%= article.edit_count %> total edit(s).</i>
+<div class="panel panel-default">
+  <h3><%= link_to article.current_version.title, article_path(article) %></h3>
+  <p><%= article.current_version.body[0..200].html_safe %>...</p>
+  <i>last updated by <%= article.last_updated_by %> on <%= article.last_updated_at %>. <%= article.edit_count %> total edit(s).</i>
+</div>
