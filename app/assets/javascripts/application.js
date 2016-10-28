@@ -17,7 +17,7 @@
 
 $(document).ready(function(){
 
-  setTimeout(function F() {
-    $('div').append("<img scr='https://media.giphy.com/media/Ijoii9lApgGoU/giphy.gif'>")
+  setTimeout(function f() {
+    $('div').append("<img src='https://media.giphy.com/media/Ijoii9lApgGoU/giphy.gif'>")
   },5000)
 })
