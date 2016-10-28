@@ -40,9 +40,9 @@ class ArticlesController < ApplicationController
 		@potential_matches = Article.all.map do |article|
 			article.versions.last
 		end
-		@potential_matches.keep_if do | version |
-			version.title.downcase.include? params[:search].downcase
-		end
+		search_term = params[:search].downcase
+		@title_matches = @potential_matches.select { | version | version.title.downcase.include? search_term}
+		@body_matches = @potential_matches.select { | version | version.body.downcase.include? search_term}
 	end
 
 	private

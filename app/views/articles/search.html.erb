@@ -1,4 +1,9 @@
-<h3>Results of your search:</h3>
-<% @potential_matches.each do |match| %>
+<h3> There were <%= @title_matches.length %> searches that matched in the title!</h3>
+<% @title_matches.each do |match| %>
   <%= render match.article %>
   <% end %>
+
+<h4> There were <%= @body_matches.length %> searches that matched in the body!</h4>
+<% @body_matches.each do |match| %>
+	<%= render match.article %>
+<% end %>
