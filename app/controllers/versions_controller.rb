@@ -1,5 +1,6 @@
 class VersionsController < ApplicationController
 	before_action :authenticate_user!, except: [:index, :show]
+	before_action :check_if_banned
 
 	def index
 		@article = Article.find_by(id: params[:article_id])

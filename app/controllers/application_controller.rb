@@ -14,18 +14,16 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_in) { |u| u.permit(:email, :password, :remember_me) }
   end
 
-  def banned?
-    current_user && current_user.role == "Banned"
-  end
-
   def check_if_banned
     redirect_to unauthorized_path if banned?
+  end
+
+  def banned?
+    current_user && current_user.role == "Banned"
   end
 
   def admin_user?
     current_user && current_user.role == "Admin"
   end
-
-
 
 end
