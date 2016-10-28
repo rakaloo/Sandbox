@@ -7,6 +7,7 @@ class CategoriesController < ApplicationController
     if @category.save
       redirect_to @category
     else
+      @errors = @category.errors.full_messages
       redirect_to new_article_path
     end
   end

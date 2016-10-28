@@ -2,6 +2,13 @@
   <h2>Edit This Article</h2>
   <%= link_to "Cancel Edit", article_path(@article) %>
   <%= form_for [@article, @article.versions.build] do |f| %>
+    <div class="error">
+      <% if @errors %>
+        <% @errors.each do |error| %>
+          <%= error  %>
+        <% end %>
+      <% end %>
+    </div>
 
       <div>
         <%= f.label :title %>
