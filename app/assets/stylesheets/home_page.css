@@ -1,4 +1,4 @@
-#sidebar {
+#sidebar { 
     list-style-type: none;
     margin: 0px;
     height: 850px;
@@ -10,6 +10,6 @@
 }
 
 .panel {
-  padding: 0px 2px 5px 5px;
-  box-shadow: 5px 5px 5px #999999;
+    padding: 0px 2px 5px 5px;
+    box-shadow: 5px 5px 5px #999999;
 }
