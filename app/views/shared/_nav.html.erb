@@ -1,6 +1,7 @@
 <nav>
   <ul class="nav_ul">
-      <li id="header"><a id="header-link" href="/">Sandbox</a></li>
+      <li id="header" class="title"><a id="header-link" href="/">Sandbox</a></li>
+      <!-- <i class="fa fa-paper-plane-o fa-lg" aria-hidden="true"></i> -->
       <li class="search-bar"><%= render '/shared/search_bar' %></li>
     <% if user_signed_in? %>
       <li class="nav-link"> <%= link_to "Homepage", root_path %> </li>
