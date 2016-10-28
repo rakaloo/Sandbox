@@ -1,7 +1,7 @@
 class Article < ApplicationRecord
-	has_many :categorizations
+	has_many :categorizations, dependent: :destroy
 	has_many :categories, through: :categorizations
-	has_many :versions
+	has_many :versions, dependent: :destroy
 	has_many :editors, through: :versions, source: :editor
 
 	accepts_nested_attributes_for :versions
