@@ -16,11 +16,8 @@
 		</div>
 	<% end %>
   <div>
-    <%= f.fields_for :categorizations do |categorizations_form| %>
-      <%= label_tag "Select all categories that apply:" %><br>
-      <div class="form-group">
-        <%= select_tag :category, options_from_collection_for_select(Category.all, :id, :name), multiple: true, class: "form-control" %>
-      </div>
+    <%= f.fields_for :categorizations do  %>
+      <%= render partial: 'categorizations/form' %>
     <% end %>
   </div>
     <br>

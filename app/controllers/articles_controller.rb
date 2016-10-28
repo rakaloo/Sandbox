@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
 	before_action :check_if_banned
 
 	def index
-		@articles = Article.all
+		@articles = Article.joins(:versions).group("articles.id").order("count(articles.id) DESC").limit(8)
 	end
 
 	def create
