@@ -4,8 +4,11 @@ class CategoriesController < ApplicationController
 
   def create
     @category = Category.new(category_params)
-    @category.save
-    redirect_to @category
+    if @category.save
+      redirect_to @category
+    else
+      redirect_to new_article_path
+    end
   end
 
   def update
