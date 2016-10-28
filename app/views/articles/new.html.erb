@@ -1,29 +1,28 @@
 <div class="version-form">
+  <h2>Create A New Article</h2>
   <%= form_for @article do |f| %>
-  	<%= f.fields_for :versions do |versions_form| %>
-  		<div>
-  		  <%= versions_form.label :title %>
-  		</div>
-  		<div>
-  		  <%= versions_form.text_field :title, class: "title-field input-lg" %>
-  		</div>
-      <br>
-  		<div>
-  		  <%= versions_form.label :body %>
-  		</div>
-  		<div>
-  		  <%= versions_form.cktext_area :body, rows: 10 %>
-  		</div>
-      <br>
-  	<% end %>
-    <div>
-      <%= f.fields_for :categorizations do |categorizations_form| %>
-        <%= label_tag "Select all categories that apply:" %><br>
-        <div class="form-group">
-          <%= select_tag :category, options_from_collection_for_select(Category.all, :id, :name), multiple: true, class: "form-control" %>
-        </div>
-      <% end %>
-    </div>
+    <%= f.fields_for :versions do |versions_form| %>
+		<div>
+		  <%= versions_form.label :title %>
+		</div>
+		<div>
+		  <%= versions_form.text_field :title, class: "title-field input-lg" %>
+		</div>
+		<div>
+		  <%= versions_form.label :body %>
+		</div>
+		<div>
+		  <%= versions_form.cktext_area :body, rows: 10 %>
+		</div>
+	<% end %>
+  <div>
+    <%= f.fields_for :categorizations do |categorizations_form| %>
+      <%= label_tag "Select all categories that apply:" %><br>
+      <div class="form-group">
+        <%= select_tag :category, options_from_collection_for_select(Category.all, :id, :name), multiple: true, class: "form-control" %>
+      </div>
+    <% end %>
+  </div>
     <br>
   	<div>
   	  <%= f.submit 'Save Article', class: "btn btn-info" %>
