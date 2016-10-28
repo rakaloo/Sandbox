@@ -6,12 +6,26 @@
 	<%= @article.current_version.body.html_safe %>
 	<p><i>Last edited by <%= @article.last_updated_by %> on <%= @article.last_updated_at %>. <%= @article.edit_count %> total edit(s)</i></p>
 
-	<h3>Categories</h3>
+	<h3>Categories
+		<button type="button" class="btn btn-default btn-sm btn-cat">
+	    <span class="glyphicon glyphicon-plus"></span> Add
+	  </button>
+  </h3>
+
 	<ul>
 	  <% @article.categories.each do |category| %>
 	    <li><%= link_to category.name, category %></li>
 	  <% end %>
 	</ul>
+
+	<div id="categorization-form-div" style="display: none">
+		<%= form_tag(controller: "categorizations", action:"create", method: "post", class: "categorization-form") do %>
+			<%= hidden_field_tag(:article_id, @article.id) %>
+			<%= render partial: 'categorizations/form' %>
+			<%= submit_tag("Add") %>
+		<% end %>
+	</div>
+
 	<%= link_to "Edit This Article", new_article_version_path(@article) if current_user %>
 	<%= link_to "Previous Edits", article_versions_path(@article) %>
 	<%= link_to "Remove article", article_path(@article), method: :delete, data: { confirm: "Are you sure.  This action cannot be reversed?" } if admin_user? %>
