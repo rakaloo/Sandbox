@@ -3,7 +3,7 @@ class VersionsController < ApplicationController
 		@article = Article.find_by(id: params[:article_id])
 		@versions = @article.versions
 	end
-	
+
 	def show
 		@version = Version.find_by(id: params[:id])
 	end
@@ -14,9 +14,9 @@ class VersionsController < ApplicationController
 
 	def create
 		@article = Article.find_by(id: params[:article_id])
-		@version = Version.new(version_params)
+		@version = Version.create(version_params.merge(editor: current_user))
+		p @version.errors.full_messages
 		@version.article = @article
-		@version.editor = current_user
 		redirect_to article_path(@article)
 	end
 
