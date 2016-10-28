@@ -17,7 +17,7 @@
 
 $(document).ready(function(){
 
-  setTimeout(function f() {
-    $('li').append("<img src='https://media.giphy.com/media/Ijoii9lApgGoU/giphy.gif'>")
-  },5000)
+  // setTimeout(function f() {
+  //   $('li').append("<img src='https://media.giphy.com/media/Ijoii9lApgGoU/giphy.gif'>")
+  // },5000)
 })
