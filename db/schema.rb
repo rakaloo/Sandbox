@@ -21,9 +21,10 @@ ActiveRecord::Schema.define(version: 20161027175631) do
   end
 
   create_table "categories", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_categories_on_name", unique: true, using: :btree
   end
 
   create_table "categorizations", force: :cascade do |t|
