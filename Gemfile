@@ -30,6 +30,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'rails-controller-testing'
 gem 'devise'
 gem 'ckeditor'
+gem 'paperclip'
 gem 'slim'
 
 # Use Capistrano for deployment

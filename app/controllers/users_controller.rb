@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   def index
-    if current_user && current_user.role == "Admin"
+    if admin_user?
       @users = User.all
     else
       render file: "/public/422.html"
@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    if current_user && current_user.role == "Admin"
+    if admin_user?
       @user = User.find_by(id: params[:id])
       @user.update_attributes(update_user_role_params)
       redirect_to users_admin_index_path
@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    if current_user && current_user.role == "Admin"
+    if admin_user?
       User.find_by(id: params[:id]).destroy
       redirect_to users_admin_index_path
     else

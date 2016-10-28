@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
+  mount Ckeditor::Engine => '/ckeditor'
   devise_for :users
 
   resources :users_admin, :controller => 'users', only: [:index, :edit, :update, :destroy]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :categories, except: [:new, :edit, :index]
+
+  resources :categorizations, only: [:create]
 
   get '/articles/search', to: 'articles#search', as: :articles_search
 
