@@ -1,4 +1,4 @@
-<li><%= link_to categorization.category.name, categorization.category %>
+<li class="category-li <%= categorization.category.id %>" ><%= link_to categorization.category.name, categorization.category %>
   <% if user_signed_in? %>
     <%= link_to(categorization_path(categorization), method: :delete) do %>
       <span class="glyphicon glyphicon-minus"></span>

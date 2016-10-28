@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-// require ckeditor/initgit
+//= require ckeditor/initgit
 //= require_tree
 
 $(document).ready(function($) {
@@ -36,7 +36,6 @@ $(document).ready(function($) {
     })
     .fail(function(categorization) {
       console.log("error");
-      console.log(categorization);
     })
     .always(function() {
       console.log("complete");
