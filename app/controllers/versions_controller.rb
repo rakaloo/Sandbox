@@ -21,9 +21,13 @@ class VersionsController < ApplicationController
 	end
 
 	def destroy
-		@article = Article.find_by(id: params[:article_id])
-		Version.find_by(id: params[:id]).destroy
-		redirect_to article_path(@article)
+		if admin_user?
+			@article = Article.find_by(id: params[:article_id])
+			Version.find_by(id: params[:id]).destroy
+			redirect_to article_path(@article)
+		else
+			render file: "/public/422.html"
+		end
 	end
 
 	private
