@@ -1,11 +1,5 @@
 class CategorizationsController < ApplicationController
-
   def create
-    @categorization = Categorization.create(categorization_params)
-  end
-
-private
-  def categorization_params
-    params.require(:categorization).permit(:article_id, :category_id, :article, :category)
+    @categorization = Categorization.create(article_id: params[:article_id], category_id: params[:category][0])
   end
 end

@@ -17,6 +17,8 @@
 
 $(document).ready(function($) {
   $(".btn-cat").on("click", function(event) {
-    $("#categorization-form").show();
-  })
+    $("#categorization-form-div").show();
+  });
+
+  $()
 });

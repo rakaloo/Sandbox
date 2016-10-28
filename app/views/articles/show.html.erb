@@ -18,9 +18,11 @@
 	  <% end %>
 	</ul>
 
-	<div id="categorization-form" style="display: none">
-		<%= form_for :categorizations do %>
+	<div id="categorization-form-div" style="display: none">
+		<%= form_tag(controller: "categorizations", action:"create", method: "post", class: "categorization-form") do %>
+			<%= hidden_field_tag(:article_id, @article.id) %>
 			<%= render partial: 'categorizations/form' %>
+			<%= submit_tag("Add") %>
 		<% end %>
 	</div>
 
