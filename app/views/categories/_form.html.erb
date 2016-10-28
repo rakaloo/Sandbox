@@ -1,5 +1,6 @@
 <%= form_for :category do |f| %>
   <%= label_tag "Add a new category:" %><br>
-  <%= f.text_field :name %>
-  <%= f.submit %>
+  <%= f.text_field :name, class: "input-lg" %>
+  <br><br>
+  <%= f.submit 'Save Category', class: "btn btn-warning" %>
 <% end %>
