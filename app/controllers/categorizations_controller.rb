@@ -4,7 +4,6 @@ class CategorizationsController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    p params.inspect
     @categorization = Categorization.create(article_id: params[:article_id], category_id: params[:category][0])
     respond_to do |format|
       format.html { render partial: "categorization", locals: {categorization: @categorization} }
