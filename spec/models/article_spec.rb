@@ -76,5 +76,15 @@ RSpec.describe Article, type: :model do
       expect(article.edit_count).to eq versions.length
     end
 
+    it  "returns the username of the last editor" do
+      article.versions = versions
+      expect(article.last_updated_by).to eq user.username
+    end
+
+    it  "returns the time of the last update" do
+      article.versions = versions
+      expect(article.last_updated_at).to match versions[1].updated_at.to_date
+    end
+
   end
 end
