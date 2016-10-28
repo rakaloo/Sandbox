@@ -1,7 +1,7 @@
 nav ul {
     list-style-type: none;
     margin: 3px 0px;
-    padding: 0;
+    padding: 0px;
     overflow: hidden;
     border-radius: 2px;
     background-color: #ef5890;
@@ -15,13 +15,21 @@ nav li a {
     display: block;
     color: white;
     text-align: center;
-    margin: 0px;
+    margin: 0px 3px;
     padding: 14px 16px;
     text-decoration: none;
 }
 
+#header-link {
+    padding: 0px;
+    margin: 0px 3px;
+}
+
 nav li a:hover {
     background-color: #ff91c0;
+    text-decoration: none;
+    color: white;
+    margin: 0px 3px;
 }
 
 button {
@@ -43,8 +51,8 @@ button:hover {
 #header {
     float: left;
     text-align: center;
-    padding: 6px 6px;
+    padding: 0px;
     text-decoration: none;
-    font-size: 1.8em;
+    font-size: 2.45em;
     color: white;
 }
