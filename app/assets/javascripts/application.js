@@ -20,5 +20,27 @@ $(document).ready(function($) {
     $("#categorization-form-div").show();
   });
 
-  $()
+  $(".col-sm-10").on("submit", "#categorization-form-div", function(event) {
+    event.preventDefault();
+    var form = $(this).find("form");
+    console.log(form);
+    $.ajax({
+      url: '/categorizations',
+      type: 'POST',
+      data: form.serialize(),
+    })
+    .done(function(categorization) {
+      console.log(categorization);
+      $("#category-list").append(categorization);
+      $("#categorization-form-div").hide();
+    })
+    .fail(function(categorization) {
+      console.log("error");
+      console.log(categorization);
+    })
+    .always(function() {
+      console.log("complete");
+    });
+
+  })
 });

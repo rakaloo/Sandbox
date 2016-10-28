@@ -6,23 +6,18 @@
 	<%= @article.current_version.body.html_safe %>
 	<p><i>Last edited by <%= @article.last_updated_by %> on <%= @article.last_updated_at %>. <%= @article.edit_count %> total edit(s)</i></p>
 
+
 	<h3>Categories
 		<button type="button" class="btn btn-default btn-sm btn-cat">
 	    <span class="glyphicon glyphicon-plus"></span> Add
 	  </button>
   </h3>
 
-	<ul>
-	  <% @article.categorizations.each do |categorization| %>
-	    <li><%= link_to categorization.category.name, categorization.category %>
-	    	<% if user_signed_in? %>
-	    		<%= link_to(categorization_path(categorization), method: :delete) do %>
-	    			<span class="glyphicon glyphicon-minus"></span>
-	    		<% end %>
-	    	<% end %>
-	    </li>
-	  <% end %>
-	</ul>
+  <div>
+		<ul id="category-list">
+		  <%= render @article.categorizations %>
+		</ul>
+	</div>
 
 	<div id="categorization-form-div" style="display: none">
 		<%= form_tag(controller: "categorizations", action:"create", method: "post", class: "categorization-form") do %>
