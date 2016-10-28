@@ -43,6 +43,7 @@ group :development, :test do
   gem 'capybara'
   gem 'factory_girl_rails'
   gem 'vcr'
+  gem 'rspec-html-matchers'
   # gem 'shoulda-matchers', '~> 3.1'
 end
 

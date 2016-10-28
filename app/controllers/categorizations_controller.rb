@@ -14,4 +14,5 @@ class CategorizationsController < ApplicationController
   def destroy
     Categorization.find_by(id: params[:id]).destroy
   end
+
 end

@@ -1,6 +1,13 @@
-<%= form_for :category do |f| %>
+<%= form_for(:category, url: categories_path)  do |f| %>
+    <div class="error">
+      <% if @errors %>
+        <% @errors.each do |error| %>
+          <%= error  %>
+        <% end %>
+      <% end %>
+    </div>
   <%= label_tag "Add a new category:" %><br>
-  <%= f.text_field :name, class: "input-lg" %>
+  <%= f.text_field :name, class: "input-lg", minlength: 3 %>
   <br><br>
   <%= f.submit 'Save Category', class: "btn btn-warning" %>
 <% end %>

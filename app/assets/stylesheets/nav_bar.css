@@ -44,8 +44,10 @@ button:hover {
 }
 
 .search-bar {
-  margin-top: 10px;
-  margin-right: 5px;
+    position: relative;
+    margin-top: 10px;
+    margin-right: 5px;
+    bottom: 3px;
 }
 
 #header {
