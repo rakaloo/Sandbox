@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :categories, except: [:new, :edit, :index]
 
-  resources :categorizations, only: [:create]
+  resources :categorizations, only: [:create, :destroy]
 
   get '/articles/search', to: 'articles#search', as: :articles_search
 
