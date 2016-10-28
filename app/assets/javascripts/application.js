@@ -13,4 +13,10 @@
 //= require jquery
 //= require jquery_ujs
 //= require ckeditor/init
-//= require_tree .
+//= require_tree
+
+$(document).ready(function($) {
+  $(".btn-cat").on("click", function(event) {
+    $("#categorization-form").show();
+  })
+});
