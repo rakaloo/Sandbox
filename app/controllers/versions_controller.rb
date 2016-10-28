@@ -1,9 +1,11 @@
 class VersionsController < ApplicationController
+	before_action :authenticate_user!, except: [:index, :show]
+
 	def index
 		@article = Article.find_by(id: params[:article_id])
 		@versions = @article.versions
 	end
-	
+
 	def show
 		@version = Version.find_by(id: params[:id])
 	end
