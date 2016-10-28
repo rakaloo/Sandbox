@@ -84,8 +84,8 @@ RSpec.describe VersionsController, type: :controller do
     end
 
     it "creates a new version in the database" do
-      post :create, { params: { article_id: article.id, version: {title: "Test Title", body: "Test Body", editor_id: user.id } } }, sign_in(user)
-      expect{ post :create } .to change{Version.all.count}.by 1
+
+      expect{ post :create, { params: { article_id: article.id, version: {title: "Test Title", body: "Test Body", editor_id: user.id } } }, sign_in(user) } .to change{Version.all.count}.by 1
     end
 
     it "assigns the newly created version as @version" do
