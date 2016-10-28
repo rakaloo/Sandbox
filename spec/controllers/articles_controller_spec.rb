@@ -63,15 +63,17 @@ RSpec.describe ArticlesController, type: :controller do
 
 	describe "POST #create" do
     let!(:user) { User.create(username: "duke", email:"duke@duke.com", password: "password") }
+    let!(:banned) { User.create(username: "Pete", email:"Pete@pete.com", password: "password", role: "Banned") }
+    let (:versions) { [Version.create(title: "it's the first test title", body: "it's the first test body", article: article, editor: user ), Version.create(title: "it's second test title", body: "it's  second test body", article: article, editor: user)] }
 
-	    context "when valid params are passed, which is impossible to not do right now for article" do
+	    context "when valid params are passed, creates an article" do
 	      it "responds with status code 302" do
 	        post :create, {}, sign_in(user)
 	        expect(response).to have_http_status 302
 	      end
 
 	      it "creates a new article in the database" do
-          post :create, {}, sign_in(user)
+         post :create, {}, sign_in(user)
 	        expect{ post :create } .to change{Article.all.count}.by 1
 	      end
 
@@ -84,6 +86,11 @@ RSpec.describe ArticlesController, type: :controller do
 	        post :create, {}, sign_in(user)
 	        expect(response).to redirect_to article_path(Article.last)
 	      end
+
+        it "redirects a banned user" do
+          post :create, {}, sign_in(banned)
+          expect(response).to render_template(:file => "#{Rails.root}/public/404.html")
+        end
 	    end
   end
 
