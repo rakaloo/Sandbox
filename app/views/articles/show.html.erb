@@ -13,8 +13,14 @@
   </h3>
 
 	<ul>
-	  <% @article.categories.each do |category| %>
-	    <li><%= link_to category.name, category %></li>
+	  <% @article.categorizations.each do |categorization| %>
+	    <li><%= link_to categorization.category.name, categorization.category %>
+	    	<% if user_signed_in? %>
+	    		<%= link_to(categorization_path(categorization), method: :delete) do %>
+	    			<span class="glyphicon glyphicon-minus"></span>
+	    		<% end %>
+	    	<% end %>
+	    </li>
 	  <% end %>
 	</ul>
 
@@ -26,7 +32,7 @@
 		<% end %>
 	</div>
 
-	<%= link_to "Edit This Article", new_article_version_path(@article) if current_user %>
-	<%= link_to "Previous Edits", article_versions_path(@article) %>
+	<%= link_to "Edit This Article", new_article_version_path(@article) if current_user %> 	|
+	<%= link_to "Previous Edits", article_versions_path(@article) %>			|
 	<%= link_to "Remove article", article_path(@article), method: :delete, data: { confirm: "Are you sure.  This action cannot be reversed?" } if admin_user? %>
 </div>
