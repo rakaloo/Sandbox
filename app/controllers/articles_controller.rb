@@ -9,13 +9,17 @@ class ArticlesController < ApplicationController
 	def create
 		@article = Article.new(article_params)
 		@article.versions[0].editor = current_user
-		@article.save
-		if params[:category]
-			params[:category].each do |category_id|
-				Categorization.create(article: @article, category_id: category_id)
+		if @article.save
+			if params[:category]
+				params[:category].each do |category_id|
+					Categorization.create(article: @article, category_id: category_id)
+				end
 			end
+			redirect_to @article
+		else
+			@errors = @article.versions[0].errors.full_messages
+			render new_article_path
 		end
-		redirect_to @article
 	end
 
 	def new

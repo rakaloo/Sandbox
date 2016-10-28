@@ -4,9 +4,11 @@
     <%= f.fields_for :versions do |versions_form| %>
     <div class="error">
       <% if @errors %>
-      <% @errors.each do |error| %>
-        <%= error  %>
-        <% end %>
+      <ul>
+        <% @errors.each do |error| %>
+          <li> <%= error  %> </li>
+          <% end %>
+      </ul>
       <% end %>
     </div>
 		<div>
