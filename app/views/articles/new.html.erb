@@ -2,6 +2,13 @@
   <h2>Create A New Article</h2>
   <%= form_for @article do |f| %>
     <%= f.fields_for :versions do |versions_form| %>
+    <div class="error">
+      <% if @errors %>
+      <% @errors.each do |error| %>
+        <%= error  %>
+        <% end %>
+      <% end %>
+    </div>
 		<div>
 		  <%= versions_form.label :title %>
 		</div>
