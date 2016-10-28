@@ -4,6 +4,10 @@
 <div class="col-sm-10">
 	<h1><%= @category.name %></h1>
 	<ul>
-	  <%= render @category.articles %>
+    <% if @category.articles.length == 0 %>
+      <p>This category doesn't have any attached articles yet!  Create an article or tag it with <%= @category.name %> </p>
+    <% else %>
+	   <%= render @category.articles %>
+    <% end %>
 	</ul>
 </div>
