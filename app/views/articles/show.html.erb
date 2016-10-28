@@ -14,5 +14,5 @@
 	</ul>
 	<%= link_to "Edit This Article", new_article_version_path(@article) if current_user %>
 	<%= link_to "Previous Edits", article_versions_path(@article) %>
-		<%= link_to "Remove article", article_path(@article), method: :delete, data: { confirm: "Are you sure.  This action cannot be reversed?" } if admin_user? %>
+	<%= link_to "Remove article", article_path(@article), method: :delete, data: { confirm: "Are you sure.  This action cannot be reversed?" } if admin_user? %>
 </div>

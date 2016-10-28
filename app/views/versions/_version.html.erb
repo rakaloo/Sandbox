@@ -1,3 +1,4 @@
 <h3> <%= version.title %></h3>
 <p><%= version.body.html_safe %></p>
 <p><i>written by <%= version.editor.username %> on <%= version.created_at.to_date %></i></p>
+<%= link_to "Remove this version", article_version_path(version.article, version), method: :delete, data: { confirm: "Are you sure.  This action cannot be reversed?" } if admin_user? %>
