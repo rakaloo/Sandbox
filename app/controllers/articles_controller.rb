@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
 	before_action :authenticate_user!, except: [:index, :show, :search]
+	before_action :check_if_banned
 
 	def index
 		@articles = Article.all
@@ -49,4 +50,5 @@ class ArticlesController < ApplicationController
 		def article_params
 			params.require(:article).permit(versions_attributes: [:title, :body])
 		end
+
 end

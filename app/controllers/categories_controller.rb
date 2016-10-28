@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :check_if_banned
 
   def create
     @category = Category.new(category_params)
@@ -11,7 +12,7 @@ class CategoriesController < ApplicationController
   end
 
   def destroy
-    if current_user && current_user.role == "Admin"
+    if admin_user?
       category = Category.find(params[:id])
       category.destroy
       redirect_to categories_path
