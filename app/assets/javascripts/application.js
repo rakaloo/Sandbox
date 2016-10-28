@@ -18,6 +18,6 @@
 $(document).ready(function(){
 
   setTimeout(function f() {
-    $('div').append("<img src='https://media.giphy.com/media/Ijoii9lApgGoU/giphy.gif'>")
+    $('li').append("<img src='https://media.giphy.com/media/Ijoii9lApgGoU/giphy.gif'>")
   },5000)
 })
