@@ -66,5 +66,15 @@ RSpec.describe Article, type: :model do
       expect(article.cached_title).to eq versions[0].title
     end
 
+    it  "returns the current editor" do
+      article.versions = versions
+      expect(article.editor).to eq user
+    end
+
+    it  "returns the edit count" do
+      article.versions = versions
+      expect(article.edit_count).to eq versions.length
+    end
+
   end
 end
