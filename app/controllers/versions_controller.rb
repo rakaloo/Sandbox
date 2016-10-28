@@ -3,7 +3,7 @@ class VersionsController < ApplicationController
 
 	def index
 		@article = Article.find_by(id: params[:article_id])
-		@versions = @article.versions
+		@versions = @article.versions[0..-2]
 	end
 
 	def show

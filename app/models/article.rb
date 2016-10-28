@@ -22,4 +22,16 @@ class Article < ApplicationRecord
   def editor
     current_version.editor
   end
+
+  def edit_count
+    versions.count
+  end
+
+  def last_updated_by
+    editor.username
+  end
+
+  def last_updated_at
+    current_version.updated_at.to_date
+  end
 end

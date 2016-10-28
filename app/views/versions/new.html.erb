@@ -1,28 +1,32 @@
-<h2>Edit An Article</h2>
-<%= form_for [@article, @article.versions.build] do |f| %>
+<div class="col-sm-10">
+  <h2>Edit This Article</h2>
+  <%= link_to "Cancel Edit", article_path(@article) %>
+  <%= form_for [@article, @article.versions.build] do |f| %>
+
+      <div>
+        <%= f.label :title %>
+      </div>
+      <div>
+        <%= f.text_field :title, value: @article.cached_title %>
+      </div>
+      <div>
+        <%= f.label :body %>
+      </div>
+      <div>
+        <%= f.cktext_area :body, rows: 10, value: @article.cached_body %>
+      </div>
 
     <div>
-      <%= f.label :title %>
+      <%= f.fields_for :categorizations do |categorizations_form| %>
+      <div>
+        <%= label_tag "Select all categories that apply:" %><br>
+        <%= select_tag :category, options_from_collection_for_select(Category.all, :id, :name), multiple: true %>
+      </div>
+      <% end %>
     </div>
     <div>
-      <%= f.text_field :title, value: @article.cached_title %>
+      <%= f.submit 'Save Article' %>
     </div>
-    <div>
-      <%= f.label :body %>
-    </div>
-    <div>
-      <%= f.cktext_area :body, rows: 10, value: @article.cached_body %>
-    </div>
+  <% end %>
+</div>
 
-  <div>
-    <%= f.fields_for :categorizations do |categorizations_form| %>
-    <div>
-      <%= label_tag "Select all categories that apply:" %><br>
-      <%= select_tag :category, options_from_collection_for_select(Category.all, :id, :name), multiple: true %>
-    </div>
-    <% end %>
-  </div>
-  <div>
-    <%= f.submit 'Save Article' %>
-  </div>
-<% end %>

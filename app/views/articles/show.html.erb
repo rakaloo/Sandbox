@@ -1,10 +1,17 @@
-<h2><%= @article.current_version.title %></h2>
-<%= @article.current_version.body.html_safe %>
-<p>Last edited by: <%= @article.current_version.editor.username %></p>
+<div class="col-sm-2" id="sidebar">
+  <%= render "categories/index" %>
+</div>
+<div class="col-sm-10">
+	<h2><%= @article.current_version.title %></h2>
+	<%= @article.current_version.body.html_safe %>
+	<p><i>Last edited by <%= @article.last_updated_by %> on <%= @article.last_updated_at %>. <%= @article.edit_count %> total edit(s)</i></p>
 
-<h3>Categories</h3>
-<ul>
-  <% @article.categories.each do |category| %>
-    <li><%= link_to category.name, category %></li>
-  <% end %>
-</ul>
+	<h3>Categories</h3>
+	<ul>
+	  <% @article.categories.each do |category| %>
+	    <li><%= link_to category.name, category %></li>
+	  <% end %>
+	</ul>
+	<%= link_to "Edit This Article", new_article_version_path(@article) %>
+	<%= link_to "Previous Edits", article_versions_path(@article) %>
+</div>

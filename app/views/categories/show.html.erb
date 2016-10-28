@@ -1,4 +1,9 @@
-<h1><%= @category.name %></h1>
-<ul>
-  <%= render @category.articles %>
-</ul>
+<div class="col-sm-2" id="sidebar">
+  <%= render "categories/index" %>
+</div>
+<div class="col-sm-10">
+	<h1><%= @category.name %></h1>
+	<ul>
+	  <%= render @category.articles %>
+	</ul>
+</div>
